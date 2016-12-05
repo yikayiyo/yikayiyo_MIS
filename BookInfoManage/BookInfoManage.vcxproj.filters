@@ -27,6 +27,12 @@
     <ClInclude Include="BookInfoManagement.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="StudentInfoManagement.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Student.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp">
@@ -42,6 +48,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="BookInfoManagement.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Student.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentInfoManagement.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

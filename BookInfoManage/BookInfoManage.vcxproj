@@ -150,6 +150,8 @@
     <ClInclude Include="BookInfoManagement.h" />
     <ClInclude Include="Fileoperate.h" />
     <ClInclude Include="Interface.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="StudentInfoManagement.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
@@ -157,6 +159,8 @@
     <ClCompile Include="Fileoperate.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Student.cpp" />
+    <ClCompile Include="StudentInfoManagement.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

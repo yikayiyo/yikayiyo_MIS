@@ -13,11 +13,33 @@ void Interface::BookLoadface()
 
 }
 
+void Interface::StuLoadface()
+{
+	cout << endl << endl;
+	cout << "		             学生信息管理       					" << endl << endl;
+	cout << "	#######################################################	" << endl;
+	cout << "	#                                                     #	" << endl;
+	cout << "	# 1.添加学生记录  # 2.删除学生记录  # 3.修改学生信息  #	" << endl;
+	cout << "	# 4.查询学生记录  # 5.显示学生记录  # 6.退出          #	" << endl;
+	cout << "	#                                                     #	" << endl;
+	cout << "	#######################################################	" << endl;
+
+}
+
 void Interface::BookSubloadface2()						   //文件为空，添加记录时的界面
 {
 	cout << endl << endl;
 	cout << "	======================操 作 提 示======================	" << endl
 		<< "	|	1.添加图书记录	|	6.退出                 |	" << endl
+		<< "	=======================================================	" << endl;
+	cout << endl;
+}
+
+void Interface::StuSubloadface2()						   //文件为空，添加记录时的界面
+{
+	cout << endl << endl;
+	cout << "	======================操 作 提 示======================	" << endl
+		<< "	|	1.添加学生记录	|	6.退出                 |	" << endl
 		<< "	=======================================================	" << endl;
 	cout << endl;
 }
@@ -32,7 +54,17 @@ void Interface::BookSubloadface()
 	cout << endl;
 }
 
-char Interface::BookInputcharface()	//可删
+void Interface::StuSubloadface()
+{
+	cout << endl << endl;
+	cout << "	=======================操  作  提  示========================" << endl
+		<< "	|  1.添加学生记录  |  2.删除学生记录  |   3.修改学生记录    |" << endl
+		<< "	|  4.查询学生记录  |  5.显示学生记录  |   6.退出            |" << endl
+		<< "	=============================================================" << endl;
+	cout << endl;
+}
+
+char Interface::Inputcharface()	
 {
 	char op;
 	cout << "要导入文件吗？(Y/N):";
@@ -44,6 +76,32 @@ int Interface::BookOperateface()				//返回结果1-6代表不同操作
 {
 	string op;
 	int flag, nflag=0;
+
+	do
+	{
+		flag = 0;
+		if (nflag)
+		{
+			cout << "超出范围...Again:";
+			cin >> op;
+		}
+		else
+		{
+			cout << "输入你的操作: ";
+			cin >> op;
+		}
+
+		if (op.length() != 1) { flag++; nflag++; }
+		if (op[0] > '6' || op[0] < '0') { flag++; nflag++; }
+	} while (flag);
+
+	return op[0] - '0';
+}
+
+int Interface::Operateface()				//返回结果1-6代表不同操作
+{
+	string op;
+	int flag, nflag = 0;
 
 	do
 	{
@@ -92,10 +150,44 @@ int Interface::BookOperateface2()						//文件为空，添加记录时的操作提示，返回1或
 	return op[0] - '0';
 }
 
+int Interface::Operateface2()						//文件为空，添加记录时的操作提示，返回1或6
+{
+	string op;
+	int flag, nflag = 0;
+
+	do
+	{
+		flag = 0;
+		if (nflag)
+		{
+			cout << "超出范围...Again:";
+			cin >> op;
+		}
+		else
+		{
+			cout << "输入你的操作: ";
+			cin >> op;
+		}
+
+		if (op.length() != 1) { flag++; nflag++; }
+		if (op[0] != '6' && op[0] != '1') { flag++; nflag++; }
+	} while (flag);
+
+	return op[0] - '0';
+}
+
 int Interface::BookAddface()						//添加书籍界面，返回要添加的书籍数目
 {
 	int num;
 	cout << "请输入要添加的书籍数目：(输入0退出)";
+	cin >> num;
+	return num;
+}
+
+int Interface::Addface()						//添加书籍界面，返回要添加的书籍数目
+{
+	int num;
+	cout << "请输入要添加的数目：(输入0退出)";
 	cin >> num;
 	return num;
 }
@@ -108,6 +200,15 @@ int Interface::BookDelface()						//删除书籍界面，返回书籍序号
 	return index;
 }
 
+int Interface::Delface()						//删除书籍界面，返回书籍序号
+{
+	int index;
+	cout << "请输入要删除的记录序号：(输入0退出)";
+	cin >> index;
+	return index;
+}
+
+
 int Interface::BookSetface()								//设置界面，返回结果 0-7
 {
 	int index;
@@ -116,6 +217,19 @@ int Interface::BookSetface()								//设置界面，返回结果 0-7
 	if (index)
 	{
 		cout << "输入要修改的书籍的哪部分信息？(1.书号,2.书名,3.作者,4.出版社,5.出版日期,6.库存量,7.全部修改 0.退出)" <<endl;
+		cout << "输入：";
+	}
+	return index;
+}
+
+int Interface::StuSetface()								//设置界面，返回结果 0-7
+{
+	int index;
+	cout << "请输入要修改的学生序号(输入0退出)";
+	cin >> index;
+	if (index)
+	{
+		cout << "要修改哪部分信息？(1.学号,2.姓名,3.,4.,5.,6.,7.全部修改 0.退出)" << endl;
 		cout << "输入：";
 	}
 	return index;
@@ -138,6 +252,11 @@ void Interface::BookAfterSearchface()						//搜索结果显示界面
 	cout << "搜索结果：";
 	for (i = 0; i < 50; i++)cout << "-";
 	cout << endl;
+}
+
+void Interface::StuLoadface()
+{
+
 }
 
 

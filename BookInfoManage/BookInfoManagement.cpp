@@ -5,7 +5,7 @@ Book book[Num_book];	  //书对象数组
 int No_book = 1;		  //序号从1开始
 int Total_book = 0;       //当前书籍总数
 
-void BookInfoManagement::BookInfoMange()
+void BookInfoManagement::BookInfoManage()
 {
 
 	int op_num;         //操作序数

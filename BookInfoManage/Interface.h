@@ -17,4 +17,15 @@ public:
 	int BookSearchface();//搜索界面
 	void BookAfterSearchface();//搜索结果显示界面
 
+	void StuLoadface();//主界面
+	void StuSubloadface();//子界面
+	void StuSubloadface2();//子界面2
+	char Inputcharface();//提示导入文件界面
+	int Operateface();//操作输入界面
+	int Operateface2();//操作输入界面2
+	int Addface();//添加界面
+	int Delface();//删除界面
+	int StuSetface();//修改界面
+	int Searchface();//搜索界面
+	void AfterSearchface();//搜索结果显示界面
 };
