@@ -11,13 +11,13 @@ void BookInfoManagement::BookInfoManage()
 	int op_num;         //操作序数
 	char op_char;       //选择数
 	char op_char2;      //是否保存
-	Face_book.BookLoadface(); //加载界面
+	Face_book.BookLoadFace(); //加载界面
 
 	int flag, nflag = 0;
 	do {
 		flag = 0;
 		if (nflag)cout << "输入不合法，重新输入：";
-		op_char = Face_book.BookInputcharface();
+		op_char = Face_book.ReadFromFileFace();
 		if (op_char != 'Y'&&op_char != 'y'&&op_char != 'N'&&op_char != 'n')
 		{
 			flag = 1;
@@ -33,38 +33,36 @@ void BookInfoManagement::BookInfoManage()
 		do
 		{
 			flag = 0;
-			cout << "已经成功导入，要显示资料吗？(Y/N)";
-			cin >> sub_op_char;
+			sub_op_char = Face_book.AfterReadFromFileFace();
 			if (sub_op_char != 'Y'&&sub_op_char != 'y'&&sub_op_char != 'N'&&sub_op_char != 'n')
 				flag = 1;
 		} while (flag);
 
-		if (sub_op_char == 'Y' || sub_op_char == 'y') { AllBookShow();	Face_book.BookSubloadface(); }
+		if (sub_op_char == 'Y' || sub_op_char == 'y') { AllBookShow();	Face_book.BookSubLoadFace(); }
 	}
 	else if (op_char == 'N' || op_char == 'n')
 	{
-		Face_book.BookSubloadface2();
+		Face_book.BookSubLoadFace2();
 	}
 
 	while (1)				//程序执行过程
 	{
-		if (Total_book != 0) op_num = Face_book.BookOperateface();		//书籍为不0时，加载主界面
-		else op_num = Face_book.BookOperateface2();						//书籍为0时需要添加，加载子界面
+		if (Total_book != 0) op_num = Face_book.OperateFace();		//书籍为不0时，加载主界面
+		else op_num = Face_book.OperateFace2();						//书籍为0时需要添加，加载子界面
 		if (op_num == 6) break;
 		SwitchFunction(op_num);
 		cout << "任意键继续...";
 		getchar();
-		if (Total_book != 0) Face_book.BookSubloadface();
+		if (Total_book != 0) Face_book.BookSubLoadFace();
 		else
 		{
 			cout << endl;
 			cout << "书籍数目为0！";
-			Face_book.BookSubloadface2();
+			Face_book.BookSubLoadFace2();
 		}
 
 	}
-	cout << "要保存数据吗？(Y/N)";
-	cin >> op_char2;
+	op_char2 = Face_book.WriteIntoFileFace();
 
 	if (op_char2 == 'Y' || op_char2 == 'y') { OutBookFile();	cout << "已保存！" << endl; }	//保存到文件
 	system("pause");
@@ -125,7 +123,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 
 	if (op_num == 1)							//添加
 	{
-		int num = Face_book.BookAddface();
+		int num = Face_book.AddFace();
 		if (num == 0) { cout << "已退出."; getchar(); getchar(); return 0; }
 		for (i = 0; i < num; i++)
 		{
@@ -153,7 +151,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 	else if (op_num == 2)							//删除
 	{
 		int no;
-		no = Face_book.BookDelface();
+		no = Face_book.DelFace();
 		if (no == 0) { cout << "已退出."; getchar(); getchar(); return 0; }
 		for (i = no; i < Total_book; i++) { book[i].SetIndex(i); book[i - 1] = book[i]; }	//后面的元素覆盖前面的元素 
 		cout << endl << "删除书籍信息成功！" << endl;
@@ -166,7 +164,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 		int no;					//要修改的书籍序号,为0时退出
 		int item;				//要修改的项目
 		int flag = 0;
-		no = Face_book.BookSetface();
+		no = Face_book.BookSetFace();
 		if (0 == no) { cout << "已退出."; getchar(); getchar(); return 0; }
 		cin >> item;
 		switch (item)
@@ -233,7 +231,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 
 		string temp;
 
-		no = Face_book.BookSearchface();
+		no = Face_book.BookSearchFace();
 		//if (0 == no) { cout << "已退出，任意键继续..."; getchar(); getchar(); return 0; }
 		int flag = 0;
 		switch (no)
@@ -254,7 +252,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 				{
 					End = Begin + temp.length();
 					flag++;
-					if (flag == 1)Face_book.BookAfterSearchface();
+					if (flag == 1)Face_book.AfterSearchFace();
 					book[i].Show();
 					res++;
 				}
@@ -280,7 +278,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 				{
 					End = Begin + temp.length();
 					flag++;
-					if (flag == 1)Face_book.BookAfterSearchface();
+					if (flag == 1)Face_book.AfterSearchFace();
 					book[i].Show();
 					res++;
 				}
@@ -305,7 +303,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 				{
 					End = Begin + temp.length();
 					flag++;
-					if (flag == 1)Face_book.BookAfterSearchface();
+					if (flag == 1)Face_book.AfterSearchFace();
 					book[i].Show();
 					res++;
 				}
@@ -330,7 +328,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 				{
 					End = Begin + temp.length();
 					flag++;
-					if (flag == 1)Face_book.BookAfterSearchface();
+					if (flag == 1)Face_book.AfterSearchFace();
 					book[i].Show();
 					res++;
 				}
@@ -355,7 +353,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 				{
 					End = Begin + temp.length();
 					flag++;
-					if (flag == 1)Face_book.BookAfterSearchface();
+					if (flag == 1)Face_book.AfterSearchFace();
 					book[i].Show();
 					res++;
 				}

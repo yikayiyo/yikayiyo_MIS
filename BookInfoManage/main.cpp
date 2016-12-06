@@ -10,11 +10,10 @@ int main()
 {
 	BookInfoManagement Book_Info_Manage;
 	StudentInfoManagement Student_Info_Manage;
+	Interface face;
 
 	while (1) {
-		cout << "1.图书管理 2.学生管理 0.退出" << endl;
-		int op;
-		cin >> op;
+		int op = face.AdminMainFace();
 		switch (op)
 		{
 		case 1:
