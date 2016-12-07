@@ -6,6 +6,9 @@ class Interface
 {
 public:
 
+	int MainFace();							//系统主界面
+	
+	int StuMainFace();						//学生主界面
 	int AdminMainFace();					//管理员主界面
 
 	void BookLoadFace();					//图书管理主界面
