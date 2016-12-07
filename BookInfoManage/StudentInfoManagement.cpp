@@ -240,7 +240,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 		{
 			cout << "已退出，任意键继续..."; getchar(); getchar(); return 0;
 		}
-		case 1:																		//按书号搜索
+		case 1:																		//按学号搜索
 		{
 			cout << "请输入学号：";
 			cin >> id;
@@ -267,7 +267,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			getchar();
 			break;
 		}
-		case 2:																		//按书名搜索
+		case 2:																		//按姓名搜索
 			cout << "请输入姓名：";
 			cin >> name;
 			for (i = 0; i<Total_stu; i++)
@@ -292,7 +292,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			}
 			getchar();
 			break;
-		case 3:																		//按作者搜索
+		case 3:																		//按年龄搜索
 			cout << "请输入年龄：";
 			cin >> age;
 			for (i = 0; i<Total_stu; i++)
@@ -317,7 +317,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			}
 			getchar();
 			break;
-		case 4:																//按出版社搜索
+		case 4:																//按班级搜索
 			cout << "请输入班级：";
 			cin >> cls;
 			for (i = 0; i<Total_stu; i++)
@@ -342,7 +342,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			}
 			getchar();
 			break;
-		case 5:																//按出版日期搜索
+		case 5:																//按专业搜索
 			cout << "请输入专业：";
 			cin >> major;
 			for (i = 0; i<Total_stu; i++)

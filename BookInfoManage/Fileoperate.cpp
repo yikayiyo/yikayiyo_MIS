@@ -22,23 +22,23 @@ int Fileoperate::Filecinstudent()
 
 int Fileoperate::Filecout(Book b)
 {
-	file << b.GetBookId() << endl
-		<< b.GetBookName() << endl
-		<< b.GetBookAuthor() << endl
-		<< b.GetBookPub() << endl
-		<< b.GetBookPubDate() << endl
-		<< b.GetBookAmount() << endl << endl;
+	file << b.GetBookId() << "\t"
+		<< b.GetBookName() << "\t"
+		<< b.GetBookAuthor() << "\t"
+		<< b.GetBookPub() << "\t"
+		<< b.GetBookPubDate() << "\t"
+		<< b.GetBookAmount() << endl;
 	return 1;
 }
 
 int Fileoperate::Filecout(Student s)
 {
-	file << s.GetStuId() << endl
-		<< s.GetStuName() << endl
-		<< s.GetStuAge() << endl
-		<< s.GetStuClass() << endl
-		<< s.GetStuMajor() << endl
-		<< s.GetStuPhone() << endl << endl;
+	file << s.GetStuId() << "\t"
+		<< s.GetStuName() << "\t"
+		<< s.GetStuAge() << "\t"
+		<< s.GetStuClass() << "\t"
+		<< s.GetStuMajor() << "\t"
+		<< s.GetStuPhone() <<endl;
 	return 1;
 }
 
