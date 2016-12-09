@@ -9,8 +9,9 @@ public:
 	int MainFace();							//系统主界面
 	
 	int StuMainFace();						//学生主界面
-	int AdminMainFace();					//管理员主界面
+	int PersonalInfoFace();					//学生个人操作子界面
 
+	int AdminMainFace();					//管理员主界面
 	void BookLoadFace();					//图书管理主界面
 	void BookSubLoadFace();					//图书管理子界面
 	void BookSubLoadFace2();				//图书管理子界面2

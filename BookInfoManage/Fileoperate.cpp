@@ -73,6 +73,24 @@ void Fileoperate::open_out_studentfile()
 		exit(1);
 }
 
+int Fileoperate::GetIdentity(string acc, string pass)
+{
+	int res;
+	file.open(login_filename, ios::in);
+	while (!file.eof())
+	{
+		string account, password;
+		int flag;
+		file >> account >> password >> flag;
+		if (acc == account&&pass == password)
+		{
+			res = flag;
+		}
+	}
+	file.close();
+	return res;
+}
+
 int Fileoperate::Judge()
 {
 	if (file.fail())

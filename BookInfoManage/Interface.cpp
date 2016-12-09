@@ -3,7 +3,7 @@
 int Interface::MainFace()
 {
 	cout << "	######################欢 迎 使 用######################	" << endl
-		<< "	#	1.登陆				0.退出                 #	" << endl
+		<< "	#	1.登陆			0.退出		      #	" << endl
 		<< "	#######################################################	" << endl;
 	int op_num;
 	cin >> op_num;
@@ -14,7 +14,32 @@ int Interface::MainFace()
 int Interface::AdminMainFace()
 {
 	cout << "	######################操 作 提 示######################	" << endl
-		<< "	#	1.图书管理	2.学生管理	0.退出                 #	" << endl
+		<< "	#	1.图书管理	2.学生管理	0.退出        #	" << endl
+		<< "	#######################################################	" << endl;
+	int op_num;
+	cin >> op_num;
+	return op_num;
+}
+
+int Interface::StuMainFace()
+{
+	cout << endl;
+	cout << "	###########################################	" << endl;
+	cout << "	#                                         #	" << endl;
+	cout << "	# 1.我的信息  # 2.图书信息  # 3.借阅书籍  #	" << endl;
+	cout << "	# 4.归还书籍  # 5.预约书籍  # 0.退出      #	" << endl;
+	cout << "	#                                         #	" << endl;
+	cout << "	###########################################	" << endl;
+	int op_num;
+	cin >> op_num;
+	return op_num;
+}
+
+int Interface::PersonalInfoFace()
+{
+	cout << endl;
+	cout << "	######################操 作 提 示######################	" << endl
+		<< "	#	1.在借书籍	2.借阅记录	3.我的预约	0.退出        #	" << endl
 		<< "	#######################################################	" << endl;
 	int op_num;
 	cin >> op_num;
