@@ -148,6 +148,7 @@
   <ItemGroup>
     <ClInclude Include="Book.h" />
     <ClInclude Include="BookInfoManagement.h" />
+    <ClInclude Include="Borrow.h" />
     <ClInclude Include="Fileoperate.h" />
     <ClInclude Include="Interface.h" />
     <ClInclude Include="Student.h" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="BookInfoManagement.cpp" />
+    <ClCompile Include="Borrow.cpp" />
     <ClCompile Include="Fileoperate.cpp" />
     <ClCompile Include="Interface.cpp" />
     <ClCompile Include="main.cpp" />

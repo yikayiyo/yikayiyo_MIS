@@ -7,10 +7,10 @@
 using namespace std;
 
 Interface face;
-fstream file;
 Fileoperate operate;
-int admin();
-int student();
+int admin(string account);
+int student(string account);
+int BorrowBook(string account);
 
 
 int main()
@@ -36,11 +36,11 @@ int main()
 				return 1;
 			case 1:
 				cout << "学生"<<account<<"登陆成功！！" << endl;
-				student();
+				student(account);
 				break;
 			case 2:
 				cout << "管理员"<<account<<"登陆成功！！" << endl;
-				admin();
+				admin(account);
 				break;
 			}
 			break;
@@ -51,7 +51,7 @@ int main()
 	return 1;
 }
 
-int admin()
+int admin(string account)
 {
 	BookInfoManagement Book_Info_Manage;
 	StudentInfoManagement Student_Info_Manage;
@@ -72,7 +72,7 @@ int admin()
 	return 1;
 }
 
-int student()
+int student(string account)
 {
 	while (1)
 	{
@@ -80,6 +80,7 @@ int student()
 		switch (op)
 		{
 		case 1:
+			BorrowBook(account);
 			break;
 		case 2:
 			break;
@@ -94,4 +95,44 @@ int student()
 		}
 	}
 	return 1;
+}
+
+int BorrowBook(string account)
+{
+	BookInfoManagement bm;
+	fstream f;
+	f.open("Bookdata.txt", ios::out);
+	bm.SwitchFunction(5);
+	cout << "输入要借的书籍序号：(0.退出)" << endl;
+	int index;
+	cin >> index;
+	if (index == 0) return 0;
+	else
+	{
+		int i = 1;
+		while (i != index)i++;
+		int count_rese = 0;                           //保存预约了该书的人数
+		string id, name, author, publisher, pubdate;
+		int remain;
+		f >> id >> name >> author >> publisher >> pubdate >> remain;
+		f.close();
+		if (remain == 0)
+		{
+			cout << "该书籍库存不足，是否选择预约？" << endl;
+			char op;
+			cin >> op;
+			if (op == 'Y' || op == 'y')
+				;
+				//ReserveBook();
+			else
+				return 0;
+		}
+		else							//有库存时需要验证是否有人预约了该书
+		{
+			f.open("Reservedata.txt",ios::out);
+			;
+		}
+	}
+	
+
 }
