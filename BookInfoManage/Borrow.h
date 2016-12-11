@@ -11,11 +11,11 @@ private:
 	string mStuId;
 	string mStuName;
 	string mBorrowDate;
-	bool isReturn;
+	int isReturn;
 
 public:
 	void SetIndex(int i) { index = i; }
-	void SetInfo(string, string, string, string, string, bool);
+	void SetInfo(string, string, string, string, string, int);
 	void Show();
 
 	void SetBookId() { cin >> mBookId; }  
@@ -30,5 +30,5 @@ public:
 	string GetStuId() { return mStuId; }                   
 	string GetStuName() { return mStuName; }
 	string GetBorrowDate() { return mBorrowDate; }
-	bool GetIsReturn() { return isReturn; }
+	int GetIsReturn() { return isReturn; }
 };

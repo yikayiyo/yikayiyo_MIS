@@ -36,6 +36,12 @@
     <ClInclude Include="Borrow.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Reserve.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Peroperate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Book.cpp">
@@ -60,6 +66,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Borrow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Reserve.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Peroperate.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
