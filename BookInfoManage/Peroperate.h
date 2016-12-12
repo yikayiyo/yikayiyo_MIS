@@ -2,6 +2,7 @@
 #include "Book.h"
 #include "Fileoperate.h"
 #include "Interface.h"
+#include"BookInfoManagement.h"
 
 class Peroperate
 {
@@ -13,11 +14,13 @@ private:
 	Fileoperate OutFile_reserve;
 
 public:
+	void PersonalOperate(string sid);
 	void InBorrowFile();
 	void InReserveFile();
 	void OutBorrowFile();
 	void OutReserveFile();
 	void ShowMyBorrow(string sid);
+	void ShowMyCurBorrow(string sid);
 	void ShowMyReserve(string sid);
 	int SwitchFunction(string sid,int i);
 };
