@@ -9,13 +9,13 @@ using namespace std;
 
 Interface face;
 Fileoperate operate;
-int admin(BookInfoManagement &bm);
-int student(string account);
-
+int adminop();
+int studentop(string account);
+BookInfoManagement bm;
 
 int main()
 {
-	BookInfoManagement bm;
+	
 	int identity;										//当前登陆人员身份
 	while (1)
 	{
@@ -37,11 +37,11 @@ int main()
 				return 1;
 			case 1:
 				cout << "学生"<<account<<"登陆成功！！" << endl;
-				student(account);
+				studentop(account);
 				break;
 			case 2:
 				cout << "管理员"<<account<<"登陆成功！！" << endl;
-				admin(bm);
+				adminop();
 				break;
 			}
 			break;
@@ -52,9 +52,8 @@ int main()
 	return 1;
 }
 
-int admin(BookInfoManagement &bm)
+int adminop()
 {
-	
 	StudentInfoManagement Student_Info_Manage;
 	while (1) {
 		int op = face.AdminMainFace();
@@ -73,7 +72,7 @@ int admin(BookInfoManagement &bm)
 	return 1;
 }
 
-int student(string account)
+int studentop(string account)
 {
 	Peroperate p;
 	while (1)

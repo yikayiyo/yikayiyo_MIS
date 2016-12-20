@@ -20,5 +20,8 @@ public:
 	void OutBookFile();		  //写入文件
 	void AllBookShow();		  //信息展示
 	int SwitchFunction (int); //操作选项
+	void ReturnBook(string bookid);
 	BookInfoManagement() { InBookFile(); }
+	string GetBookIdByIndex(int index);
+	string GetBookNameByIndex(int index);
 };

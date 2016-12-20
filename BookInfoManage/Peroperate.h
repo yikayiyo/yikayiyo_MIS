@@ -3,6 +3,7 @@
 #include "Fileoperate.h"
 #include "Interface.h"
 #include"BookInfoManagement.h"
+#include"StudentInfoManagement.h"
 
 
 class Peroperate
@@ -10,6 +11,7 @@ class Peroperate
 private:
 	Interface face;
 	BookInfoManagement bm;
+	StudentInfoManagement sm;
 	Fileoperate Infile_borrow;
 	Fileoperate Infile_reserve;
 	Fileoperate OutFile_borrow;

@@ -372,3 +372,24 @@ int BookInfoManagement::SwitchFunction(int op_num)
 	}
 	return 1;
 }
+
+void BookInfoManagement::ReturnBook(string bookid)
+{
+	for (int i = 0; i < Total_book; i++)
+	{
+		if (book[i].GetBookId() == bookid)
+			book[i].SetBookAmount(bookid);
+	}
+}
+
+string BookInfoManagement::GetBookIdByIndex(int index)
+{
+	string id = book[index].GetBookId();
+	return id;
+}
+
+string BookInfoManagement::GetBookNameByIndex(int index)
+{
+	string name = book[index].GetBookName();
+	return name;
+}

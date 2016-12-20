@@ -1,9 +1,5 @@
 #include "StudentInfoManagement.h"
 
-const int Num_stu = 100; //最大书籍总数
-Student student[Num_stu];	  //书对象数组
-int No_stu = 1;		  //序号从1开始
-int Total_stu = 0;       //当前书籍总数
 
 void StudentInfoManagement::StuInfoManage()
 {
@@ -376,5 +372,17 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 	}
 
 	return 1;
+}
+
+string StudentInfoManagement::GetNameById(string sid)
+{
+	string name;
+	int i = 0;
+	for (;i<Total_stu;i++)
+	{
+		if (student[i].GetStuId() == sid)
+			name = student[i].GetStuName();
+	}
+	return name;
 }
 

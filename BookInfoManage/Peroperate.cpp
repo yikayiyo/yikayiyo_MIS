@@ -12,7 +12,6 @@ int Total_reserve = 0;       //当前预约总数
 void Peroperate::PersonalOperate(string sid)
 {
 	int op_num;
-	char op_char;           //是否保存
 	InBorrowFile();
 	InReserveFile();
 	while (1)
@@ -85,8 +84,8 @@ void Peroperate::OutReserveFile()
 
 int Peroperate::SwitchFunction(string sid, int op_num)
 {
-	
-	string curStuId = sid;
+	string sname =sm.GetNameById(sid);
+
 	if (op_num == 1)											//我的信息
 	{
 		int op=face.PersonalInfoFace();
@@ -115,7 +114,7 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 	}
 	else if (op_num == 4)										//还书
 	{
-		if (0==ShowMyCurBorrow(curStuId)) ;
+		if (0==ShowMyCurBorrow(sid)) ;
 		else
 		{
 			cout << "输入要归还的书籍序号： ";
@@ -123,16 +122,9 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 			cin >> index;
 			borrow[index - 1].SetIsReturn();
 			string bid = borrow[index - 1].GetBookId();
-			for (int i = 0; i < Total_book; i++)
-			{
-				if (book[i].GetBookId() == bid)
-				{
-					int temp = book[i].GetBookAmount();
-					book[i].SetBookAmount(sid);
-				}
-			}
+			bm.ReturnBook(bid);
 			cout << "归还成功！！";
-			ShowMyCurBorrow(curStuId);
+			ShowMyCurBorrow(sid);
 		}
 		
 	}
@@ -140,6 +132,28 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 	{
 		bm.AllBookShow();
 		cout << "输入要预约的书籍序号： ";
+		int no;
+		cin >> no;
+		int index = no - 1;
+		string bid = bm.GetBookIdByIndex(index);
+		string bname = bm.GetBookNameByIndex(index);
+
+		for (int i = 0; i < Total_reserve; i++)
+		{
+			if (reserve[i].GetBookId()==bid)
+			{
+				cout << "你已经预约过该书，请选择其它操作！";
+			}
+		}
+
+		cout << "输入预约时间：";
+		string date;
+		cin >> date;
+		Reserve nr;
+		nr.SetInfo(bid, bname, sid, sname, date);
+		reserve[Total_reserve] = nr;
+		Total_reserve++;
+		cout << "预约成功";
 	}
 	return 1;
 }
