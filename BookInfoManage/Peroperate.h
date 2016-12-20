@@ -4,10 +4,12 @@
 #include "Interface.h"
 #include"BookInfoManagement.h"
 
+
 class Peroperate
 {
 private:
 	Interface face;
+	BookInfoManagement bm;
 	Fileoperate Infile_borrow;
 	Fileoperate Infile_reserve;
 	Fileoperate OutFile_borrow;
@@ -20,7 +22,7 @@ public:
 	void OutBorrowFile();
 	void OutReserveFile();
 	void ShowMyBorrow(string sid);
-	void ShowMyCurBorrow(string sid);
+	int ShowMyCurBorrow(string sid);
 	void ShowMyReserve(string sid);
 	int SwitchFunction(string sid,int i);
 };

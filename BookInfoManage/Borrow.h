@@ -23,7 +23,7 @@ public:
 	void SetStuId() { cin >> mStuId; }
 	void SetStuName() { cin >> mStuName; }
 	void SetBorrowDate() { cin >> mBorrowDate; }
-	void SetIsReturn() { cin >> isReturn; }
+	void SetIsReturn() { isReturn=1; }
 
 	string GetBookId() { return mBookId; }                   
 	string GetBookName() { return mBookName; }

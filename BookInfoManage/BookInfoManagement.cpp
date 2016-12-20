@@ -1,9 +1,6 @@
 #include "BookInfoManagement.h"
 
-const int Num_book = 100; //最大书籍类别总数
-Book book[Num_book];	  //书对象数组
-int No_book = 1;		  //序号从1开始
-int Total_book = 0;       //当前书籍总数
+
 
 void BookInfoManagement::BookInfoManage()
 {
@@ -107,8 +104,7 @@ void BookInfoManagement::AllBookShow()
 		book[i].Show();
 	for (i = 0; i < 110; i++)cout << "-";
 	cout << endl;
-	cout << "按任意键继续...";
-	getchar(); getchar();
+	getchar();
 }
 
 int BookInfoManagement::SwitchFunction(int op_num)
