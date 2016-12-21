@@ -1,6 +1,6 @@
 #include "Student.h"
 
-void Student::SetInfo(string id, string name, string age, string cls, string major, string phone)
+void Student::SetInfo(string id, string name, string age, string cls, string major, string phone,int num)
 {
 	mStuId = id;
 	mStuName = name;
@@ -8,6 +8,7 @@ void Student::SetInfo(string id, string name, string age, string cls, string maj
 	mStuClass = cls;
 	mStuMajor = major;
 	mStuPhone = phone;
+	mStuBorrow = num;
 }
 
 void Student::Show()
@@ -18,5 +19,7 @@ void Student::Show()
 		<< "年龄：" << mStuAge << "	"
 		<< "班级：" << mStuClass << "	"
 		<< "专业：" << mStuMajor << "	"
-		<< "电话：" << mStuPhone << endl << endl;
+		<< "电话：" << mStuPhone << "	"
+		<<"当前借阅数："<<mStuBorrow<<"	"
+		<<endl << endl;
 }

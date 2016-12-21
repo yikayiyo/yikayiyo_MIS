@@ -139,7 +139,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			cout << endl;
 			Total_stu++;
 			student[Total_stu - 1].SetIndex(Total_stu);
-			student[Total_stu - 1].SetInfo(id, name, age, cls, major, phone);
+			student[Total_stu - 1].SetInfo(id, name, age, cls, major, phone,0);
 		}
 		if (i == num)cout << "添加完成！" << endl;
 
@@ -206,7 +206,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			cout << "输入联系方式：";
 			cin >> phone;
 			cout << endl;
-			student[no - 1].SetInfo(id, name, age, cls, major, phone);
+			student[no - 1].SetInfo(id, name, age, cls, major, phone,0);
 			break;
 		}
 
@@ -384,5 +384,27 @@ string StudentInfoManagement::GetNameById(string sid)
 			name = student[i].GetStuName();
 	}
 	return name;
+}
+
+int StudentInfoManagement::GetNumById(string sid)
+{
+	int res;
+	int i = 0;
+	for (; i<Total_stu; i++)
+	{
+		if (student[i].GetStuId() == sid)
+			res = student[i].GetStuBrwAmt();
+	}
+	return res;
+}
+
+void StudentInfoManagement::AfterReturn(string sid)
+{
+	int i = 0;
+	for (; i<Total_stu; i++)
+	{
+		if (student[i].GetStuId() == sid)
+			student[i].UpdateBrwAmt();
+	}
 }
 

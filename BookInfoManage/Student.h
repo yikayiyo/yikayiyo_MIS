@@ -15,14 +15,14 @@ private:
 	string mStuName;						//姓名
 	string mStuAge;							//年龄
 	string mStuClass;						//班级
-	string mStuMajor;
-	string mStuPhone;
-	//Book temp;							//借书还书预约信息读取，+接口
-	//string SysMessage="";						//系统消息
+	string mStuMajor;						//专业
+	string mStuPhone;						//联系方式
+	int mStuBorrow;							//当前借阅数量
+	string SysMessage;				    //系统消息
 		 
 public:
 	void SetIndex(int i) { index = i; }                       //设置下标
-	void SetInfo(string, string, string, string, string,string);//修改函数
+	void SetInfo(string, string, string, string, string,string,int);//修改函数
 
 	void SetStuId() { cin >> mStuId; }
 	void SetStuName() { cin >> mStuName; }
@@ -30,6 +30,7 @@ public:
 	void SetStuClass() { cin >> mStuClass; }
 	void SetStuMajor() { cin >> mStuMajor; }
 	void SetStuPhone() { cin >> mStuPhone; }
+	void UpdateBrwAmt() { mStuBorrow--; }
 	void Show();
 
 	string GetStuId() {	return mStuId;}
@@ -38,7 +39,6 @@ public:
 	string GetStuClass() { return mStuClass; }
 	string GetStuMajor() { return mStuMajor; }
 	string GetStuPhone()	{ return mStuPhone;}
-
-	//借书、还书、预约-----涉及文件操作Fileoperate、Book、界面设计、程序逻辑设计
+	int GetStuBrwAmt() { return mStuBorrow; }
 };
 #endif // !STUDENT_H

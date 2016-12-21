@@ -23,4 +23,6 @@ public:
 	int SwitchFunction(int);						//²Ù×÷Ñ¡Ïî
 	StudentInfoManagement() { InStuFile(); }
 	string GetNameById(string sid);
+	int GetNumById(string id);
+	void AfterReturn(string id);
 };

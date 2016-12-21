@@ -25,6 +25,7 @@ void Peroperate::PersonalOperate(string sid)
 	OutBorrowFile(); 
 	OutReserveFile();
 	bm.OutBookFile();
+	sm.OutStuFile();
 	system("pause");
 }
 
@@ -120,11 +121,16 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 			cout << "输入要归还的书籍序号： ";
 			int index;
 			cin >> index;
-			borrow[index - 1].SetIsReturn();
-			string bid = borrow[index - 1].GetBookId();
-			bm.ReturnBook(bid);
-			cout << "归还成功！！";
-			ShowMyCurBorrow(sid);
+			if (index != -1)
+			{
+				borrow[index - 1].SetIsReturn();
+				string bid = borrow[index - 1].GetBookId();
+				bm.ReturnBook(bid);
+				sm.AfterReturn(sid);
+				cout << "归还成功！！";
+				ShowMyCurBorrow(sid);
+			}
+			
 		}
 		
 	}
@@ -198,7 +204,7 @@ void Peroperate::ShowMyReserve(string sid)
 
 int Peroperate::ShowMyCurBorrow(string sid)
 {
-	int total = 0;
+	int total = sm.GetNumById(sid);
 	int i;
 	cout << endl;
 	for (i = 0; i < 50; i++)	cout << "-";
@@ -208,8 +214,11 @@ int Peroperate::ShowMyCurBorrow(string sid)
 	for (i = 0; i < Total_borrow; i++)
 	{
 		if (borrow[i].GetStuId() == sid && borrow[i].GetIsReturn() == 0)
-		{borrow[i].Show(); total++;}
+		{borrow[i].Show();}
 	}
+
+	cout << endl;
+	cout << "当前借阅数量："<<total<<endl;
 	for (i = 0; i < 110; i++)cout << "-";
 	cout << endl;
 	getchar();

@@ -13,9 +13,10 @@ int Fileoperate::Filecinbook()
 int Fileoperate::Filecinstudent()
 {
 	string id, name, age, cls, major, phone;
+	int num;
 	if (file.eof()) { return 0; }
-	file >> id >> name >> age >> cls >> major >> phone;
-	student.SetInfo(id, name, age, cls, major, phone);
+	file >> id >> name >> age >> cls >> major >> phone>>num;
+	student.SetInfo(id, name, age, cls, major, phone,num);
 	return 1;
 	
 }
@@ -59,7 +60,8 @@ int Fileoperate::Filecout(Student s)
 		<< s.GetStuAge() << "\t"
 		<< s.GetStuClass() << "\t"
 		<< s.GetStuMajor() << "\t"
-		<< s.GetStuPhone() <<endl;
+		<< s.GetStuPhone() <<"\t"
+		<<s.GetStuBrwAmt()<<endl;
 	return 1;
 }
 
