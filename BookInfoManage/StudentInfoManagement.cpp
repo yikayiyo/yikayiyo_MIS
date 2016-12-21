@@ -404,7 +404,17 @@ void StudentInfoManagement::AfterReturn(string sid)
 	for (; i<Total_stu; i++)
 	{
 		if (student[i].GetStuId() == sid)
-			student[i].UpdateBrwAmt();
+			student[i].UpdateBrwAmt1();
+	}
+}
+
+void StudentInfoManagement::AfterBorrow(string sid)
+{
+	int i = 0;
+	for (; i<Total_stu; i++)
+	{
+		if (student[i].GetStuId() == sid)
+			student[i].UpdateBrwAmt2();
 	}
 }
 

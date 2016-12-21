@@ -30,7 +30,8 @@ public:
 	void SetStuClass() { cin >> mStuClass; }
 	void SetStuMajor() { cin >> mStuMajor; }
 	void SetStuPhone() { cin >> mStuPhone; }
-	void UpdateBrwAmt() { mStuBorrow--; }
+	void UpdateBrwAmt1() { mStuBorrow--; }
+	void UpdateBrwAmt2() { mStuBorrow++; }
 	void Show();
 
 	string GetStuId() {	return mStuId;}

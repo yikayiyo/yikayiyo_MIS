@@ -111,7 +111,30 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 	}
 	else if (op_num == 3)										//借书
 	{
-
+		bm.AllBookShow();
+		cout << "输入要借阅的书籍序号：";
+		int no;cin >> no;
+		int index = no - 1;
+		cout << "输入借阅日期：";
+		string date;cin >> date;
+		string bid = bm.GetBookIdByIndex(index);
+		string bname = bm.GetBookNameByIndex(index);
+		string sname = sm.GetNameById(sid);
+		int isReturn = 0;
+		if (isEnough(sid,bid))
+		{
+			Borrow nb;
+			nb.SetInfo(bid, bname, sid, sname, date, isReturn);
+			borrow[Total_borrow] = nb;
+			Total_borrow++;
+			bm.AfterBorrow(bid);
+			sm.AfterBorrow(sid);
+			cout << "借书成功！！";
+		}
+		else
+		{
+			cout << "该书籍当前不可借阅，您可以选择预约！";
+		}
 	}
 	else if (op_num == 4)										//还书
 	{
@@ -164,6 +187,17 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 	return 1;
 }
 
+int Peroperate::GetReserveAmount(string bookid)
+{
+	int i = 0,total=0;
+	for (; i < Total_reserve; i++)
+	{
+		if (reserve[i].GetBookId() == bookid)
+			total++;
+	}
+	return total;
+}
+
 void Peroperate::ShowMyBorrow(string sid)
 {
 	int i;
@@ -211,7 +245,7 @@ int Peroperate::ShowMyCurBorrow(string sid)
 	cout << "当前借阅";
 	for (i = 0; i < 50; i++)	cout << "-";
 	cout << endl;
-	for (i = 0; i < Total_borrow; i++)
+	for (i = 0; i < total; i++)
 	{
 		if (borrow[i].GetStuId() == sid && borrow[i].GetIsReturn() == 0)
 		{borrow[i].Show();}
@@ -223,4 +257,61 @@ int Peroperate::ShowMyCurBorrow(string sid)
 	cout << endl;
 	getchar();
 	return total;
+}
+
+bool Peroperate::isEnough(string stuid, string bookid)
+{
+	bool res =false;
+	if (sm.GetNumById(stuid) == 3)			//设为3方便测试，需求设计为30
+	{
+		cout << "当前借阅已达最大值！！" << endl;
+		return res;
+	}
+	else									//在没借满的情况下判断是否可借
+	{
+		if (0==bm.GetBookAmount(bookid))	//书籍数为0不可借
+		{
+			return res;
+		}
+		else								//书籍数不为零时从预约情况判断是否可借阅
+		{
+			if (!isReserved(stuid, bookid))		//没有预约
+			{
+				if (bm.GetBookAmount(bookid) <= GetReserveAmount(bookid))
+					return res;
+				else
+					return true;
+			}
+			else							//有预约
+			{
+				int amount = bm.GetBookAmount(bookid);
+				for (int i = 0; i < amount; i++)
+				{
+					if (reserve[i].GetStuId() == stuid)
+					{
+						res = true; return res;
+					}
+				}
+				return res;
+
+			}
+
+		}
+
+	}
+	//return res;
+}
+
+bool Peroperate::isReserved(string stuid, string bookid)
+{
+	bool res = 0;
+	int i = 0;
+	for (; i < Total_reserve; i++)
+	{
+		if (reserve[i].GetBookId() == bookid&&reserve[i].GetStuId() == stuid)
+		{
+			res = 1;
+		}
+	}
+	return res;
 }

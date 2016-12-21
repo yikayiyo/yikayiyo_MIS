@@ -25,4 +25,5 @@ public:
 	string GetNameById(string sid);
 	int GetNumById(string id);
 	void AfterReturn(string id);
+	void AfterBorrow(string id);
 };

@@ -373,12 +373,23 @@ int BookInfoManagement::SwitchFunction(int op_num)
 	return 1;
 }
 
-void BookInfoManagement::ReturnBook(string bookid)
+void BookInfoManagement::AfterBorrow(string bookid)
 {
-	for (int i = 0; i < Total_book; i++)
+	int i = 0;
+	for (; i < Total_book; i++)
 	{
 		if (book[i].GetBookId() == bookid)
-			book[i].SetBookAmount(bookid);
+			book[i].SetBookAmount2(bookid);
+	}
+}
+
+void BookInfoManagement::ReturnBook(string bookid)
+{
+	int i = 0;
+	for (; i < Total_book; i++)
+	{
+		if (book[i].GetBookId() == bookid)
+			book[i].SetBookAmount1(bookid);
 	}
 }
 
@@ -392,4 +403,15 @@ string BookInfoManagement::GetBookNameByIndex(int index)
 {
 	string name = book[index].GetBookName();
 	return name;
+}
+
+int BookInfoManagement::GetBookAmount(string bid)
+{
+	int res;
+	for (int i = 0; i < Total_book; i++)
+	{
+		if (book[i].GetBookId() == bid)
+			res = book[i].GetBookAmount();
+	}
+	return res;
 }

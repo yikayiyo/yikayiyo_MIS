@@ -26,7 +26,8 @@ public:
 	void SetBookPub() { cin >> mBookPub; }                    //修改出版社
 	void SetBookPubDate() { cin >> mBookPubDate; }            //修改出版日期
 	void SetBookAmount() { cin >> mRemainAmount; }            //修改数量
-	void SetBookAmount(string stuId) { mRemainAmount ++; }
+	void SetBookAmount1(string stuId) { mRemainAmount ++; }
+	void SetBookAmount2(string stuId) { mRemainAmount --; }
 	void Show();
 
 	string GetBookId() { return mBookId; }                   //获取书号
