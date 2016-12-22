@@ -12,7 +12,6 @@ Fileoperate operate;
 int adminop();
 int studentop(string account);
 BookInfoManagement bm;
-
 int main()
 {
 	
@@ -25,9 +24,11 @@ int main()
 		case 0:
 			return 0;
 		case 1:
-			cout << "ÊäÈëÕËºÅ¡¢ÃÜÂë" << endl;
+			cout << "ÊäÈëÕËºÅ:" << endl;
 			string account, password;
-			cin >> account >> password;
+			cin >> account;
+			cout << "ÊäÈëÃÜÂë:" << endl;
+			cin >> password;
 			identity = operate.GetIdentity(account, password);
 			
 			switch (identity)
@@ -54,7 +55,7 @@ int main()
 
 int adminop()
 {
-	StudentInfoManagement Student_Info_Manage;
+	StudentInfoManagement sm;
 	while (1) {
 		int op = face.AdminMainFace();
 		switch (op)
@@ -63,7 +64,7 @@ int adminop()
 			bm.BookInfoManage();
 			break;
 		case 2:
-			Student_Info_Manage.StuInfoManage();
+			sm.StuInfoManage();
 			break;
 		case 0:
 			return 0;

@@ -16,7 +16,7 @@ private:
 	Fileoperate Infile_reserve;
 	Fileoperate OutFile_borrow;
 	Fileoperate OutFile_reserve;
-
+	
 public:
 	void PersonalOperate(string sid);
 	void InBorrowFile();

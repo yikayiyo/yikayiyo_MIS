@@ -14,6 +14,7 @@ private:
 	Interface Face_book;
 	Fileoperate Infile_book;  //文件操作流实现读出功能
 	Fileoperate OutFile_book; //文件操作流实现写入功能
+
 public:
 	void BookInfoManage();     //信息管理
 	void InBookFile();		  //读出文件
@@ -27,3 +28,4 @@ public:
 	string GetBookNameByIndex(int index);
 	int GetBookAmount(string bid);
 };
+

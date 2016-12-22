@@ -176,16 +176,20 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 			{
 				cout << "你已经预约过该书，请选择其它操作！";
 			}
+			else
+			{
+				cout << "输入预约时间：";
+				string date;
+				cin >> date;
+				Reserve nr;
+				nr.SetInfo(bid, bname, sid, sname, date);
+				reserve[Total_reserve] = nr;
+				Total_reserve++;
+				cout << "预约成功";
+			}
 		}
 
-		cout << "输入预约时间：";
-		string date;
-		cin >> date;
-		Reserve nr;
-		nr.SetInfo(bid, bname, sid, sname, date);
-		reserve[Total_reserve] = nr;
-		Total_reserve++;
-		cout << "预约成功";
+		
 	}
 	return 1;
 }
