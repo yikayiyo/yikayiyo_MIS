@@ -1,7 +1,5 @@
 #include "BookInfoManagement.h"
 
-
-
 void BookInfoManagement::BookInfoManage()
 {
 
@@ -120,29 +118,51 @@ int BookInfoManagement::SwitchFunction(int op_num)
 	if (op_num == 1)							//添加
 	{
 		int num = Face_book.AddFace();
-		if (num == 0) { cout << "已退出."; getchar(); getchar(); return 0; }
-		for (i = 0; i < num; i++)
+		if (num == -1) { cout << "已退出."; getchar(); getchar(); return 0; }
+		else if (num == 0)//批量添加
 		{
-			cout << "输入第" << (i + 1) << "本书籍的信息：" << endl;
-			cout << "输入书籍编号：";
-			cin >> id;
-			cout << "输入书籍名称：";
-			cin >> name;
-			cout << "输入书籍作者：";
-			cin >> author;
-			cout << "输入出版社：";
-			cin >> publisher;
-			cout << "输入出版日期：";
-			cin >> pubdate;
-			cout << "输入库存：";
-			cin >> amount;
-			cout << endl;
-			Total_book++;
-			book[Total_book - 1].SetIndex(Total_book);
-			book[Total_book - 1].SetInfo(id, name, author, publisher, pubdate, amount);
+			char path[] = "newbook.txt";
+			fstream f;
+			f.open(path, ios::in);
+			string id, name, author, publisher, pubdate;
+			int num;
+			
+				while(!f.eof())
+				{
+					f >> id >> name >> author >> publisher >> pubdate >> num;
+					Total_book++;
+					book[Total_book - 1].SetIndex(Total_book);
+					book[Total_book - 1].SetInfo(id, name, author, publisher, pubdate, num);
+				}
+				f.close();
+			cout << "添加完成";
 		}
-		if (i == num)cout << "添加完成！" << endl;
+		else
+		{
+			for (i = 0; i < num; i++)
+			{
+				cout << "输入第" << (i + 1) << "本书籍的信息：" << endl;
+				cout << "输入书籍编号：";
+				cin >> id;
+				cout << "输入书籍名称：";
+				cin >> name;
+				cout << "输入书籍作者：";
+				cin >> author;
+				cout << "输入出版社：";
+				cin >> publisher;
+				cout << "输入出版日期：";
+				cin >> pubdate;
+				cout << "输入库存：";
+				cin >> amount;
+				cout << endl;
+				Total_book++;
+				book[Total_book - 1].SetIndex(Total_book);
+				book[Total_book - 1].SetInfo(id, name, author, publisher, pubdate, amount);
+			}
+			if (i == num)cout << "添加完成！" << endl;
 
+		}
+		
 	}
 	else if (op_num == 2)							//删除
 	{

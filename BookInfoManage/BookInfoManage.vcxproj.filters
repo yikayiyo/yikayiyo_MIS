@@ -78,4 +78,7 @@
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="newbook.txt" />
+  </ItemGroup>
 </Project>
