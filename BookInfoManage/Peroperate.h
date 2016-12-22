@@ -27,6 +27,7 @@ public:
 	int ShowMyCurBorrow(string sid);
 	bool isEnough(string stuid, string bookid);					//≈–∂œ ÈºÆ «∑Òø…ΩË‘ƒ
 	bool isReserved(string stuid, string bookid);
+	void UpdateReserve(string stuid, string bookid);
 	void ShowMyReserve(string sid);
 	int SwitchFunction(string sid,int i);
 	int GetReserveAmount(string bookid);

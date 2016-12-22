@@ -124,11 +124,14 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 		if (isEnough(sid,bid))
 		{
 			Borrow nb;
+			nb.SetIndex(Total_borrow);
 			nb.SetInfo(bid, bname, sid, sname, date, isReturn);
 			borrow[Total_borrow] = nb;
 			Total_borrow++;
-			bm.AfterBorrow(bid);
-			sm.AfterBorrow(sid);
+			bm.AfterBorrow(bid);								//刷新库存
+			sm.AfterBorrow(sid);								//刷新学生当前借阅数
+			//刷新预约列表
+			UpdateReserve(sid,bid);
 			cout << "借书成功！！";
 		}
 		else
@@ -245,7 +248,7 @@ int Peroperate::ShowMyCurBorrow(string sid)
 	cout << "当前借阅";
 	for (i = 0; i < 50; i++)	cout << "-";
 	cout << endl;
-	for (i = 0; i < total; i++)
+	for (i = 0; i < Total_borrow; i++)
 	{
 		if (borrow[i].GetStuId() == sid && borrow[i].GetIsReturn() == 0)
 		{borrow[i].Show();}
@@ -314,4 +317,19 @@ bool Peroperate::isReserved(string stuid, string bookid)
 		}
 	}
 	return res;
+}
+void Peroperate::UpdateReserve(string sid, string bid)
+{
+	if (isReserved(sid, bid))
+	{
+		int no;
+		for (int i = 0; i < Total_reserve; i++)
+		{
+			if (reserve[i].GetBookId() == bid&&reserve[i].GetStuId() == sid)
+				no = i+1;
+		}
+		for (; no < Total_reserve; no++)
+			reserve[no - 1] = reserve[no];
+		Total_reserve--;
+	}
 }
