@@ -117,6 +117,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 
 	if (op_num == 1)							//添加
 	{
+		AllBookShow();
 		int num = Face_book.AddFace();
 		if (num == -1) { cout << "已退出."; getchar(); getchar(); return 0; }
 		else if (num == 0)//批量添加
@@ -166,6 +167,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 	}
 	else if (op_num == 2)							//删除
 	{
+		AllBookShow();
 		int no;
 		no = Face_book.DelFace();
 		if (no == 0) { cout << "已退出."; getchar(); getchar(); return 0; }
@@ -177,6 +179,7 @@ int BookInfoManagement::SwitchFunction(int op_num)
 	}
 	else if (op_num == 3)							//修改
 	{
+		AllBookShow();
 		int no;					//要修改的书籍序号,为0时退出
 		int item;				//要修改的项目
 		int flag = 0;

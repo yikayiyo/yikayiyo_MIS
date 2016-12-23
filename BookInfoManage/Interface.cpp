@@ -189,7 +189,7 @@ int Interface::OperateFace2()						//文件为空，添加记录时的操作提示，返回1或6
 int Interface::AddFace()									//添加界面，返回要添加的数目
 {
 	int num;
-	cout << "请输入要添加的数目：(输入0退出)";
+	cout << "请输入要添加的数目：(退出:-1; 批量添加：0;)";
 	cin >> num;
 	return num;
 }

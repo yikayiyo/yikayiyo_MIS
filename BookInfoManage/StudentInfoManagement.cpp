@@ -119,33 +119,57 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 
 	if (op_num == 1)							//添加
 	{
+		AllStuShow();
 		int num = Face_student.AddFace();
-		if (num == 0) { cout << "已退出."; getchar(); getchar(); return 0; }
-		for (i = 0; i < num; i++)
+		if (num == -1) { cout << "已退出."; getchar(); getchar(); return 0; }
+		else if (num == 0)//批量添加
 		{
-			cout << "输入第" << (i + 1) << "个学生的信息：" << endl;
-			cout << "输入学生编号：";
-			cin >> id;
-			cout << "输入学生姓名：";
-			cin >> name;
-			cout << "输入学生年龄：";
-			cin >> age;
-			cout << "输入学生班级：";
-			cin >> cls;
-			cout << "输入学生专业：";
-			cin >> major;
-			cout << "输入学生联系方式：";
-			cin >> phone;
-			cout << endl;
-			Total_stu++;
-			student[Total_stu - 1].SetIndex(Total_stu);
-			student[Total_stu - 1].SetInfo(id, name, age, cls, major, phone,0);
+			char path[] = "newstudent.txt";
+			fstream f;
+			f.open(path, ios::in);
+			string id, name, age, cls, major,phone;
+			int num;
+
+			while (!f.eof())
+			{
+				f >> id >> name >> age >> cls >> major >> phone >> num;
+				Total_stu++;
+				student[Total_stu - 1].SetIndex(Total_stu);
+				student[Total_stu - 1].SetInfo(id, name, age, cls, major, phone, num);
+			}
+			f.close();
+			cout << "添加完成";
 		}
-		if (i == num)cout << "添加完成！" << endl;
+
+		else
+		{
+			for (i = 0; i < num; i++)
+			{
+				cout << "输入第" << (i + 1) << "个学生的信息：" << endl;
+				cout << "输入学生编号：";
+				cin >> id;
+				cout << "输入学生姓名：";
+				cin >> name;
+				cout << "输入学生年龄：";
+				cin >> age;
+				cout << "输入学生班级：";
+				cin >> cls;
+				cout << "输入学生专业：";
+				cin >> major;
+				cout << "输入学生联系方式：";
+				cin >> phone;
+				cout << endl;
+				Total_stu++;
+				student[Total_stu - 1].SetIndex(Total_stu);
+				student[Total_stu - 1].SetInfo(id, name, age, cls, major, phone, 0);
+			}
+			if (i == num)cout << "添加完成！" << endl;
+		}
 
 	}
 	else if(op_num==2)
 	{
+		AllStuShow();
 		int no;
 		no = Face_student.DelFace();
 		if (no == 0) { cout << "已退出."; getchar(); getchar(); return 0; }
@@ -157,6 +181,7 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 	}
 	else if (op_num == 3)							//修改
 	{
+		AllStuShow();
 		int no;					//要修改的学生序号,为0时退出
 		int item;				//要修改的项目
 		int flag = 0;
