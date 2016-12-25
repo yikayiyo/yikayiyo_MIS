@@ -11,9 +11,9 @@ void Peroperate::PersonalOperate(string sid)
 {
 	int op_num;
 	InBorrowFile();
-	for (int i = 0; i < Total_borrow; i++) {
+	/*for (int i = 0; i < Total_borrow; i++) {
 		borrow[i].Show();
-	}
+	}*/
 	InReserveFile();
 	while (1)
 	{
@@ -25,8 +25,8 @@ void Peroperate::PersonalOperate(string sid)
 	}
 	OutBorrowFile(); 
 	OutReserveFile();
-	bm.OutBookFile();
-	sm.OutStuFile();
+	BookInfoManagement::GetBM().OutBookFile();
+	StudentInfoManagement::GetSM().OutStuFile();
 	system("pause");
 }
 
@@ -86,7 +86,7 @@ void Peroperate::OutReserveFile()
 
 int Peroperate::SwitchFunction(string sid, int op_num)
 {
-	string sname =sm.GetNameById(sid);
+	string sname = StudentInfoManagement::GetSM().GetNameById(sid);
 
 	if (op_num == 1)											//我的信息
 	{
@@ -108,19 +108,19 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 	} 
 	else if (op_num == 2)										//图书信息
 	{
-		bm.AllBookShow();
+		BookInfoManagement::GetBM().AllBookShow();
 	}
 	else if (op_num == 3)										//借书
 	{
-		bm.AllBookShow();
+		BookInfoManagement::GetBM().AllBookShow();
 		cout << "输入要借阅的书籍序号：";
 		int no;cin >> no;
 		int index = no - 1;
 		cout << "输入借阅日期：";
 		string date;cin >> date;
-		string bid = bm.GetBookIdByIndex(index);
-		string bname = bm.GetBookNameByIndex(index);
-		string sname = sm.GetNameById(sid);
+		string bid = BookInfoManagement::GetBM().GetBookIdByIndex(index);
+		string bname = BookInfoManagement::GetBM().GetBookNameByIndex(index);
+		string sname = StudentInfoManagement::GetSM().GetNameById(sid);
 		int isReturn = 0;
 		if (isEnough(sid,bid))
 		{
@@ -130,8 +130,8 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 			nb.SetInfo(bid, bname, sid, sname, date, isReturn);
 			borrow[Total_borrow] = nb;
 			Total_borrow++;
-			bm.AfterBorrow(bid);								//刷新库存
-			sm.AfterBorrow(sid);								//刷新学生当前借阅数
+			BookInfoManagement::GetBM().AfterBorrow(bid);								//刷新库存
+			StudentInfoManagement::GetSM().AfterBorrow(sid);								//刷新学生当前借阅数
 			//刷新预约列表
 			UpdateReserve(sid,bid);
 			cout << "借书成功！！";
@@ -153,8 +153,8 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 			{
 				borrow[index - 1].SetIsReturn();
 				string bid = borrow[index - 1].GetBookId();
-				bm.ReturnBook(bid);
-				sm.AfterReturn(sid);
+				BookInfoManagement::GetBM().ReturnBook(bid);
+				StudentInfoManagement::GetSM().AfterReturn(sid);
 				cout << "归还成功！！";
 				ShowMyCurBorrow(sid);
 			}
@@ -164,13 +164,13 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 	}
 	else if (op_num == 5)										//预约书籍
 	{
-		bm.AllBookShow();
+		BookInfoManagement::GetBM().AllBookShow();
 		cout << "输入要预约的书籍序号： ";
 		int no;
 		cin >> no;
 		int index = no - 1;
-		string bid = bm.GetBookIdByIndex(index);
-		string bname = bm.GetBookNameByIndex(index);
+		string bid = BookInfoManagement::GetBM().GetBookIdByIndex(index);
+		string bname = BookInfoManagement::GetBM().GetBookNameByIndex(index);
 
 		for (int i = 0; i < Total_reserve; i++)
 		{
@@ -186,6 +186,8 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 		string date;
 		cin >> date;
 		Reserve nr;
+		index = Total_reserve+1;
+		nr.SetIndex(index);
 		nr.SetInfo(bid, bname, sid, sname, date);
 		reserve[Total_reserve] = nr;
 		Total_reserve++;
@@ -246,7 +248,7 @@ void Peroperate::ShowMyReserve(string sid)
 
 int Peroperate::ShowMyCurBorrow(string sid)
 {
-	int total = sm.GetNumById(sid);
+	int total = StudentInfoManagement::GetSM().GetNumById(sid);
 	int i;
 	cout << endl;
 	for (i = 0; i < 50; i++)	cout << "-";
@@ -270,14 +272,14 @@ int Peroperate::ShowMyCurBorrow(string sid)
 bool Peroperate::isEnough(string stuid, string bookid)
 {
 	bool res =false;
-	if (sm.GetNumById(stuid) == 3)			//3测试，需求设计为10
+	if (StudentInfoManagement::GetSM().GetNumById(stuid) == 3)			//3测试，需求设计为10
 	{
 		cout << "当前借阅已达最大值！！" << endl;
 		return res;
 	}
 	else									//在没借满的情况下判断是否可借
 	{
-		if (0==bm.GetBookAmount(bookid))	//书籍数为0不可借
+		if (0== BookInfoManagement::GetBM().GetBookAmount(bookid))	//书籍数为0不可借
 		{
 			return res;
 		}
@@ -285,14 +287,14 @@ bool Peroperate::isEnough(string stuid, string bookid)
 		{
 			if (!isReserved(stuid, bookid))		//没有预约
 			{
-				if (bm.GetBookAmount(bookid) <= GetReserveAmount(bookid))
+				if (BookInfoManagement::GetBM().GetBookAmount(bookid) <= GetReserveAmount(bookid))
 					return res;
 				else
 					return true;
 			}
 			else							//有预约
 			{
-				int amount = bm.GetBookAmount(bookid);
+				int amount = BookInfoManagement::GetBM().GetBookAmount(bookid);
 				for (int i = 0; i < amount; i++)
 				{
 					if (reserve[i].GetStuId() == stuid)

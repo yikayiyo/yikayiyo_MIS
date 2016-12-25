@@ -14,8 +14,15 @@ private:
 	Interface Face_book;
 	Fileoperate Infile_book;  //文件操作流实现读出功能
 	Fileoperate OutFile_book; //文件操作流实现写入功能
-
+	BookInfoManagement() { InBookFile(); };
 public:
+	
+	static BookInfoManagement & GetBM()
+	{
+		static BookInfoManagement bm;   //局部静态变量  
+		return bm;
+	}
+
 	void BookInfoManage();     //信息管理
 	void InBookFile();		  //读出文件
 	void OutBookFile();		  //写入文件
@@ -23,7 +30,7 @@ public:
 	int SwitchFunction (int); //操作选项
 	void AfterBorrow(string bookid);
 	void ReturnBook(string bookid);
-	BookInfoManagement() { InBookFile(); }
+	//BookInfoManagement() { InBookFile(); }
 	string GetBookIdByIndex(int index);
 	string GetBookNameByIndex(int index);
 	int GetBookAmount(string bid);

@@ -10,8 +10,8 @@ class Peroperate
 {
 private:
 	Interface face;
-	BookInfoManagement bm;
-	StudentInfoManagement sm;
+	//BookInfoManagement bm;
+	//StudentInfoManagement sm;
 	Fileoperate Infile_borrow;
 	Fileoperate Infile_reserve;
 	Fileoperate OutFile_borrow;

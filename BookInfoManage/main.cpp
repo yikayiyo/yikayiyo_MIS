@@ -55,17 +55,15 @@ int main()
 
 int adminop()
 {
-	BookInfoManagement bm;
-	StudentInfoManagement sm;
 	while (1) {
 		int op = face.AdminMainFace();
 		switch (op)
 		{
 		case 1:
-			bm.BookInfoManage();
+			BookInfoManagement::GetBM().BookInfoManage();
 			break;
 		case 2:
-			sm.StuInfoManage();
+			StudentInfoManagement::GetSM().StuInfoManage();
 			break;
 		case 0:
 			return 0;

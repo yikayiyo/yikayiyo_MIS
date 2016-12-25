@@ -18,7 +18,7 @@ private:
 	string mStuMajor;						//专业
 	string mStuPhone;						//联系方式
 	int mStuBorrow;							//当前借阅数量
-	string SysMessage;				    //系统消息
+	//string SysMessage;				    //系统消息
 		 
 public:
 	void SetIndex(int i) { index = i; }                       //设置下标

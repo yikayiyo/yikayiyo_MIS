@@ -231,7 +231,8 @@ int StudentInfoManagement::SwitchFunction(int op_num)
 			cout << "输入联系方式：";
 			cin >> phone;
 			cout << endl;
-			student[no - 1].SetInfo(id, name, age, cls, major, phone,0);
+			int remain = student[no-1].GetStuBrwAmt();
+			student[no - 1].SetInfo(id, name, age, cls, major, phone,remain);
 			break;
 		}
 
