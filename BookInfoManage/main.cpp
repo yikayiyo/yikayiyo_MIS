@@ -11,7 +11,7 @@ Interface face;
 Fileoperate operate;
 int adminop();
 int studentop(string account);
-BookInfoManagement bm;
+
 int main()
 {
 	
@@ -55,6 +55,7 @@ int main()
 
 int adminop()
 {
+	BookInfoManagement bm;
 	StudentInfoManagement sm;
 	while (1) {
 		int op = face.AdminMainFace();
@@ -75,10 +76,10 @@ int adminop()
 
 int studentop(string account)
 {
-	Peroperate p;
+	
 	while (1)
 	{
-		p.PersonalOperate(account);
+		Peroperate::GetInstance().PersonalOperate(account);
 		break;
 	}
 	return 1;

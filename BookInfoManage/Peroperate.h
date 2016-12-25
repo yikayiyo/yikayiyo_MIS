@@ -16,8 +16,13 @@ private:
 	Fileoperate Infile_reserve;
 	Fileoperate OutFile_borrow;
 	Fileoperate OutFile_reserve;
-	
+	Peroperate() {};
 public:
+	static Peroperate & GetInstance()
+	{
+		static Peroperate instance;   //局部静态变量  
+		return instance;
+	}
 	void PersonalOperate(string sid);
 	void InBorrowFile();
 	void InReserveFile();

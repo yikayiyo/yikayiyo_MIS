@@ -402,7 +402,7 @@ void BookInfoManagement::AfterBorrow(string bookid)
 	for (; i < Total_book; i++)
 	{
 		if (book[i].GetBookId() == bookid)
-			book[i].SetBookAmount2(bookid);
+			book[i].SetBookAmount2();
 	}
 }
 
@@ -412,7 +412,7 @@ void BookInfoManagement::ReturnBook(string bookid)
 	for (; i < Total_book; i++)
 	{
 		if (book[i].GetBookId() == bookid)
-			book[i].SetBookAmount1(bookid);
+			book[i].SetBookAmount1();
 	}
 }
 

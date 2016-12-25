@@ -1,18 +1,19 @@
 #include "Peroperate.h"
 const int Num_borrow = 100; //最大借阅记录总数
-Borrow borrow[Num_borrow];	  //借阅对象数组
-int No_borrow = 1;		  //序号从1开始
+static Borrow borrow[Num_borrow];	  //借阅对象数组
 int Total_borrow = 0;       //当前总数
 
 const int Num_reserve = 100; //最大预约记录总数
-Reserve reserve[Num_reserve];	  //预约对象数组
-int No_reserve = 1;		  //序号从1开始
+static Reserve reserve[Num_reserve];	  //预约对象数组
 int Total_reserve = 0;       //当前预约总数
 
 void Peroperate::PersonalOperate(string sid)
 {
 	int op_num;
 	InBorrowFile();
+	for (int i = 0; i < Total_borrow; i++) {
+		borrow[i].Show();
+	}
 	InReserveFile();
 	while (1)
 	{
@@ -124,7 +125,8 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 		if (isEnough(sid,bid))
 		{
 			Borrow nb;
-			nb.SetIndex(Total_borrow);
+			int index = Total_borrow + 1;
+			nb.SetIndex(index);
 			nb.SetInfo(bid, bname, sid, sname, date, isReturn);
 			borrow[Total_borrow] = nb;
 			Total_borrow++;
@@ -136,7 +138,7 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 		}
 		else
 		{
-			cout << "该书籍当前不可借阅，您可以选择预约！";
+			cout << "该书籍当前不可借阅!";
 		}
 	}
 	else if (op_num == 4)										//还书
@@ -175,20 +177,19 @@ int Peroperate::SwitchFunction(string sid, int op_num)
 			if (reserve[i].GetBookId()==bid)
 			{
 				cout << "你已经预约过该书，请选择其它操作！";
+				return 1;
 			}
-			else
-			{
-				cout << "输入预约时间：";
-				string date;
-				cin >> date;
-				Reserve nr;
-				nr.SetInfo(bid, bname, sid, sname, date);
-				reserve[Total_reserve] = nr;
-				Total_reserve++;
-				cout << "预约成功";
-			}
+			
 		}
-
+	
+		cout << "输入预约时间：";
+		string date;
+		cin >> date;
+		Reserve nr;
+		nr.SetInfo(bid, bname, sid, sname, date);
+		reserve[Total_reserve] = nr;
+		Total_reserve++;
+		cout << "预约成功";
 		
 	}
 	return 1;
@@ -269,7 +270,7 @@ int Peroperate::ShowMyCurBorrow(string sid)
 bool Peroperate::isEnough(string stuid, string bookid)
 {
 	bool res =false;
-	if (sm.GetNumById(stuid) == 3)			//设为3方便测试，需求设计为30
+	if (sm.GetNumById(stuid) == 3)			//3测试，需求设计为10
 	{
 		cout << "当前借阅已达最大值！！" << endl;
 		return res;
