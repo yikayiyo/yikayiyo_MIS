@@ -76,9 +76,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <Text Include="newbook.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="newbook.txt" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

@@ -169,10 +169,10 @@
     <ClCompile Include="StudentInfoManagement.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <Text Include="newbook.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="newbook.txt" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
